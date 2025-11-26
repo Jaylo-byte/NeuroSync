@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import Home from "./pages/Home";
 
-function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios.get("http://localhost:5000/")
-      .then(res => setMessage(res.data))
-      .catch(err => console.error("Error connecting to backend:", err));
-  }, []);
-
+export default function App() {
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h1>NeuroSync Frontend</h1>
-      <h2>{message || "Connecting to backend..."}</h2>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+      <header className="p-4 bg-gray-800 text-center text-2xl font-bold">
+        🧠 NeuroSync
+      </header>
+      <main className="flex-1 p-4">
+        <Home />
+      </main>
     </div>
   );
 }
-
-export default App;

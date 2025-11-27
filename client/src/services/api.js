@@ -7,13 +7,24 @@ const API = axios.create({
   },
 });
 
-// 🎙️ Send voice or text for analysis
-export const sendVoiceData = async (formData) => {
+// 🎙️ Send voice transcription for analysis (returns text + audio response)
+export const sendVoiceData = async (text, language = 'en') => {
   try {
-    const response = await API.post("/voice/analyze", formData);
+    const response = await API.post("/voice/analyze", { text, language });
     return response.data;
   } catch (error) {
     console.error("Error sending voice data:", error);
+    throw error;
+  }
+};
+
+// 🔊 Get audio response for text
+export const getAudioResponse = async (text, language = 'en') => {
+  try {
+    const response = await API.post("/voice/speak", { text, language });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting audio response:", error);
     throw error;
   }
 };

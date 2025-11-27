@@ -28,8 +28,8 @@ services:
 
   backend:
     build: 
-      context: .
-      dockerfile: neuro-core/Dockerfile
+      context: ./neuro-core
+      dockerfile: Dockerfile
     container_name: neurosync-backend
     ports:
       - "8080:8080"
